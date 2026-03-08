@@ -3440,6 +3440,15 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<ClockProvider><App /></ClockProvider>);
     </script>
+
+    <script>
+        (function() {
+            const TIMEOUT = 15 * 60 * 1000; // 15 minutos
+            let timer = setTimeout(() => window.location.reload(), TIMEOUT);
+            const reset = () => { clearTimeout(timer); timer = setTimeout(() => window.location.reload(), TIMEOUT); };
+            ['mousemove','mousedown','keydown','scroll','touchstart','click'].forEach(e => document.addEventListener(e, reset, { passive: true }));
+        })();
+    </script>
 </body>
 
 </html>
